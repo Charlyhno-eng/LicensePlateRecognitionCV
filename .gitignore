@@ -8,8 +8,7 @@ venv/
 
 # Ignore images folder and dataset folder (if you ne veulent pas les versionner)
 images/
-dataset_all_countries/
-dataset_UC3M-LP/
+dataset/
 runs/
 
 # Model files (YOLO, PyTorch, etc.)
