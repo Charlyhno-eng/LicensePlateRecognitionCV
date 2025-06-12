@@ -3,9 +3,9 @@
 This is a car license plate recognition project using images.
 
 ## Installation
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+- python3 -m venv venv
+- source venv/bin/activate
+- pip install -r requirements.txt
 
 ## Usage
 python scripts/file.py
