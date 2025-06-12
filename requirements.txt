@@ -1,0 +1,8 @@
+opencv-python
+numpy
+imutils
+paddleocr
+matplotlib
+easyocr
+psutil
+ultralytics

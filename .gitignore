@@ -1,0 +1,43 @@
+# Virtual environment
+venv/
+
+# IDE/editor config files
+.ropeproject/
+.vscode/
+.idea/
+
+# Ignore images folder and dataset folder (if you ne veulent pas les versionner)
+images/
+dataset/
+runs/
+
+# Model files (YOLO, PyTorch, etc.)
+*.pt
+*.onnx
+*.engine
+*.tflite
+*.mlmodel
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Log files
+*.log
+
+# System files (Mac, Windows, Linux)
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Env files
+.env
+.env.*
+
+# Note: do not ignore your scripts folder or README
