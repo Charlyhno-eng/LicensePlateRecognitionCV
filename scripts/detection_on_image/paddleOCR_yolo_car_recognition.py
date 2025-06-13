@@ -24,8 +24,7 @@ results = model.predict(
 
 # Loop on every detection of YOLO
 for result in results:
-    boxes = result.boxes
-    for i, box in enumerate(boxes):
+    for i, box in enumerate(result.boxes):
         x1, y1, x2, y2 = map(int, box.xyxy[0])
         conf = float(box.conf[0])
         print(f"Plate detected : ({x1}, {y1}) - ({x2}, {y2}) with {conf:.2%} of confidence")

@@ -6,7 +6,7 @@ from ultralytics import YOLO
 import cv2
 import easyocr
 import time
-from plate_format.plate_format_fr import is_valid_plate, normalize_plate_format
+from plate_format.plate_format_ro import is_valid_plate, normalize_plate_format
 
 model = YOLO("runs/detect/plate_detector8/weights/best.pt")
 ocr = easyocr.Reader(['en'], gpu=True)
@@ -28,8 +28,7 @@ def display_camera_with_detection():
         results = model.predict(source=frame, conf=0.25, imgsz=416, verbose=False)
 
         for result in results:
-            boxes = result.boxes
-            for box in boxes:
+            for box in result.boxes:
                 x1, y1, x2, y2 = map(int, box.xyxy[0])
                 width = x2 - x1
                 height = y2 - y1
@@ -51,8 +50,7 @@ def display_camera_with_detection():
                         raw_text = res[1].strip()
 
                         if is_valid_plate(raw_text):
-                            formatted = normalize_plate_format(raw_text)
-                            print("License Plate :", formatted)
+                            print("License Plate :", normalize_plate_format(raw_text))
 
 
         cv2.imshow("Camera with Plate Detection", frame)

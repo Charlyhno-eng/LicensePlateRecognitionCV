@@ -1,6 +1,5 @@
 from ultralytics import YOLO
 import cv2
-import os
 
 image_path = "images_test/image9.jpg"
 
@@ -19,8 +18,7 @@ results = model.predict(
 img = cv2.imread(image_path)
 
 for result in results:
-    boxes = result.boxes
-    for box in boxes:
+    for box in result.boxes:
         x1, y1, x2, y2 = map(int, box.xyxy[0])
         conf = float(box.conf[0])
         print(f"Licence plate detected : ({x1}, {y1}), ({x2}, {y2}) with {conf:.2%} of confidence")
