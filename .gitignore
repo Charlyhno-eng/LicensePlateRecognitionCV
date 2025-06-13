@@ -11,13 +11,6 @@ images/
 dataset/
 runs/
 
-# Model files (YOLO, PyTorch, etc.)
-*.pt
-*.onnx
-*.engine
-*.tflite
-*.mlmodel
-
 # Python cache files
 __pycache__/
 *.pyc
