@@ -3,7 +3,7 @@ import cv2
 
 image_path = "images_test/image9.jpg"
 
-model = YOLO("runs/detect/plate_detector8/weights/best.pt")
+model = YOLO("yolov8mymodel.pt")
 
 results = model.predict(
     source=image_path,

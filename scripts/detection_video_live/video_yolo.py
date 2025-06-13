@@ -41,7 +41,6 @@ def extract_valid_plate(plate_crop):
 
 def display_camera_with_detection():
     cap = cv2.VideoCapture(0)
-    cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
     last_detection_time = 0
     ocr_interval_second = 3
@@ -56,7 +55,7 @@ def display_camera_with_detection():
         # Resize to speed up processing
         frame = cv2.resize(frame, (640, 480))
 
-        results = model.predict(source=frame, conf=0.25, imgsz=416, verbose=False)
+        results = model.predict(source=frame, conf=0.25, imgsz=640, verbose=False)
 
         for result in results:
             for box in result.boxes:
@@ -84,11 +83,8 @@ def display_camera_with_detection():
                         last_detected_plates[key] = current_time
                         last_detection_time = current_time
 
-                        cv2.putText(frame, plate, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX,
-                                    0.6, (0, 255, 0), 2)
-
         used_gb, total_gb = get_memory_usage()
-        cv2.putText(frame, f"RAM: {used_gb:.1f} / {total_gb:.0f} GB", (10, 25), cv2.FONT_HERSHEY_SIMPLEX,
+        cv2.putText(frame, f"RAM: {used_gb:.2f} / {total_gb:.2f} GB", (10, 25), cv2.FONT_HERSHEY_SIMPLEX,
                             0.6, (0, 0, 180), 2)
 
         cv2.imshow("Camera with Plate Detection", frame)

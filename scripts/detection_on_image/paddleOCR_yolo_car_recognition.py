@@ -8,7 +8,7 @@ import os
 start_time = time.time()
 process = psutil.Process(os.getpid())
 
-model = YOLO("runs/detect/plate_detector8/weights/best.pt")
+model = YOLO("yolov8mymodel.pt")
 ocr = PaddleOCR(use_textline_orientation=True, lang='en')
 
 PATH = "images_test/image9.jpg"
