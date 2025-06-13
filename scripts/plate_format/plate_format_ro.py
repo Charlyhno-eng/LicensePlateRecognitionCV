@@ -16,16 +16,23 @@ pattern_regional = re.compile(rf"^({'|'.join(RO_PREFIXES - {'B'})})\s\d{{2}}\s[A
 
 def normalize_plate_format(plate: str) -> str:
     """
-    Attempts to correctly shape a poorly spaced but valid plate.
-    For exemple : 'B865MHQ' => 'B 865 MHQ'
-                  'CJ12XYZ' => 'CJ 12 XYZ'
+    Corrige les plaques mal espacées et les ramène à un format standard.
+    Exemples :
+        'B865MHQ' => 'B 865 MHQ'
+        'CJ12XYZ' => 'CJ 12 XYZ'
+        'CT40LMD' => 'CT 40 LMD'
     """
     plate = plate.strip().upper().replace("-", "").replace(" ", "")
-    if len(plate) == 7 and plate[0] == 'B':
-        return f"{plate[0]} {plate[1:4]} {plate[4:]}"
-    elif len(plate) == 7 and plate[:2] in RO_PREFIXES:
-        return f"{plate[:2]} {plate[2:4]} {plate[4:]}"
+
+    if len(plate) == 7:
+        # Format pour Bucarest (B123ABC)
+        if plate[0] == 'B' and plate[1:4].isdigit() and plate[4:].isalpha():
+            return f"{plate[0]} {plate[1:4]} {plate[4:]}"
+        # Format pour les autres régions (CJ12XYZ)
+        elif plate[:2] in RO_PREFIXES and plate[2:4].isdigit() and plate[4:].isalpha():
+            return f"{plate[:2]} {plate[2:4]} {plate[4:]}"
     return plate
+
 
 def is_valid_plate(plate: str) -> bool:
     """
