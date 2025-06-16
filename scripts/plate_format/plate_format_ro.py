@@ -16,7 +16,7 @@ pattern_regional = re.compile(rf"^({'|'.join(RO_PREFIXES - {'B'})})\s\d{{2}}\s[A
 
 def normalize_plate_format(plate: str) -> str:
     """
-    Corrige les plaques mal espacées et les ramène à un format standard.
+    Corrects poorly spaced plates and returns them to a standard size
     Exemples :
         'B865MHQ' => 'B 865 MHQ'
         'CJ12XYZ' => 'CJ 12 XYZ'

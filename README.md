@@ -3,6 +3,7 @@
 LicensePlateReconitionCV is a computer vision project. In this project, I'm testing different approaches to detecting car license plates. I analyze and search for them on images and videos.
 
 ## Installation
+- sudo apt install tesseract-ocr # or equivalent for your system
 - python3 -m venv venv
 - source venv/bin/activate
 - pip install -r requirements.txt
