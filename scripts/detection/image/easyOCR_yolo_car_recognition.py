@@ -12,7 +12,7 @@ process = psutil.Process(os.getpid())
 model = YOLO("yolov8mymodel.pt")
 ocr = easyocr.Reader(['en'], gpu=False)
 
-PATH = "images_test/image9.jpg"
+PATH = "images_test/plate_input/image9.jpg"
 img = cv2.imread(PATH)
 
 # Run YOLO detection

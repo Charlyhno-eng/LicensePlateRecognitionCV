@@ -1,8 +1,8 @@
 import cv2
+from matplotlib import pyplot as plt
 import numpy as np
 import imutils
-from matplotlib import pyplot as plt
-from paddleocr import PaddleOCR
+import easyocr
 import time
 import psutil
 import os
@@ -10,9 +10,9 @@ import os
 start_time = time.time()
 process = psutil.Process(os.getpid())
 
-ocr = PaddleOCR(use_textline_orientation=True, lang='en')
+ocr = easyocr.Reader(['en'])
 
-PATH = 'images_test/plate_output/image1.jpg'
+PATH = 'images_test/plate_input/image9.jpg'
 img = cv2.imread(PATH)
 
 # Image preprocessing
@@ -35,21 +35,20 @@ for contour in contours:
 
 # Masking to isolate the plate
 mask = np.zeros(gray.shape, np.uint8)
-cv2.drawContours(mask, [location], 0, 255, -1)
+new_image = cv2.drawContours(mask, [location], 0, 255, -1)
 new_image = cv2.bitwise_and(img, img, mask=mask)
 
 # Segmenting the plate
 (x, y) = np.where(mask == 255)
 (x1, y1), (x2, y2) = (np.min(x), np.min(y)), (np.max(x), np.max(y))
-cropped_image = img[x1:x2+1, y1:y2+1]
+cropped_image = gray[x1:x2 + 1, y1:y2 + 1]
 
 # Reading the text on the plate
-cropped_resized = cv2.resize(cropped_image, None, fx=2, fy=2, interpolation=cv2.INTER_LINEAR)
-result = ocr.predict(cropped_resized)
-license_plate_text = ' '.join(result[0]['rec_texts'])
-print("Plate :", license_plate_text.strip())
+result = ocr.readtext(cropped_image)
+license_plate_text = ''.join([text for (bbox, text, prob) in result])
+print("Plate :", license_plate_text)
 
-plt.imshow(cv2.cvtColor(cropped_resized, cv2.COLOR_BGR2RGB))
+plt.imshow(cv2.cvtColor(new_image, cv2.COLOR_BGR2RGB))
 plt.show()
 
 end_time = time.time()

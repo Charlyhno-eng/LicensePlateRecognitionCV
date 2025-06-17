@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 import cv2
 
-image_path = "images_test/image9.jpg"
+image_path = "images_test/input/image9.jpg"
 
 model = YOLO("yolov8mymodel.pt")
 
