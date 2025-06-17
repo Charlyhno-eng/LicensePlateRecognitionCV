@@ -20,6 +20,9 @@ __pycache__/
 # Log files
 *.log
 
+# Onnx files
+*.onnx
+
 # System files (Mac, Windows, Linux)
 .DS_Store
 Thumbs.db
