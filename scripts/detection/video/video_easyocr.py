@@ -9,7 +9,7 @@ from ultralytics import YOLO
 import easyocr
 from plate_format.plate_format_ro import is_valid_plate, normalize_plate_format
 
-model = YOLO("yolov8mymodel.pt")
+model = YOLO("yolov8mymodel.onnx")
 
 ocr = easyocr.Reader(['en'], gpu=False)
 

@@ -1,5 +1,7 @@
 from ultralytics import YOLO
 
+# Load the YOLO8 model
 model = YOLO("yolov8mymodel.pt")
 
-model.export(format="onnx", opset=12, dynamic=False, imgsz=640)
+# Export the model to ONNX format
+model.export(format='onnx')
