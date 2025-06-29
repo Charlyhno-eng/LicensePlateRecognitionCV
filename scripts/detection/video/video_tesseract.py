@@ -14,6 +14,9 @@ model = YOLO("yolov8mymodel.pt")
 last_detected_plates = {}
 max_plate_age_seconds = 10
 
+url = "http://192.168.100.67:4747/video"
+cap = cv2.VideoCapture(url)
+
 def get_memory_usage():
     mem = psutil.virtual_memory()
     used_gb = (mem.total - mem.available) / (1024 ** 3)
@@ -57,8 +60,6 @@ def extract_valid_plate(plate_crop):
     return None
 
 def display_camera_with_detection():
-    cap = cv2.VideoCapture(0)
-
     last_detection_time = 0
     ocr_interval_second = 3
 
